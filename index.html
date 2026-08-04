@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body  class="w-full flex flex-col justify-center items-center bg-[url('https://tse1.mm.bing.net/th/id/OIP.pKN8_b6UcavMO_SYz4VljwHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3')] bg-cover bg-no-repeat bg-center">
+    
+<header class="w-full h-auto">
+<div class="group flex flex-row  justify-between items-center w-full  h-[30%] px-4 py-2 bg-white">
+         
+ <p class="text-xl md:text-3xl font-bold">JAXA 宇宙飛行士</p>
+    
+<div class="relative group mt-4 pt-3 text-xl">
+  <p class="cursor-pointer px-10 hover:text-blue-500" id="kuru">現クルー</p>
+<div class="absolute left-0 mt-2 bg-white shadow-lg  p-2 hidden group-hover:block px-8">
+    <p class="hover:text-blue-500 border-t border-gray/30" id="OB">OB</p>
+    <p class="hover:text-blue-500 border-t border-gray/30" id="tokyo">東京出身</p>
+</div>
+</div>
+
+</div>
+</header>
+
+    <main class="p-8 md:px-48">
+        <img src="https://kids.gakken.co.jp/jiyuu/wp-content/uploads/2023/06/universe-kv.jpg.webp" alt="宇宙の画像">
+
+        <h1 class="text-xl md:text-3xl font-bold mt-20 text-white text-center hover hover:underline">歴代！日本の宇宙飛行士</h1>
+        <div class="grid grid-cols-1 gap-3 mt-10" id="memberlist">
+    
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+
+
+    <script>
+        const members =[
+            { name:"星出 彰彦" , age:"57歳（1968年生まれ）", born:"東京都世田谷区" , space:"3回（2008年にスペースシャトル、2012年にソユーズ、2021年にクルードラゴンでISS長期滞在・船長も経験）" ,like:"ラグビー、水泳、旅、写真", episode:"少年時代にアメリカに住んでおり、ケネディ宇宙センターに連れて行かれたのが宇宙を目指すきっかけでした。ラグビー愛が非常に強く、宇宙（ISS）にラグビーボールを持ち込み、無重力空間でパスを投げて遊んだ経験があります。", img:"https://humans-in-space.jaxa.jp/assets/images/space-job/lnav_hoshide-akihiko.jpg", type:"tokyo"},
+            { name:"大西 卓哉" , age:"50歳（1975年生まれ）", born:"東京都" , space:"1回（2016年にソユーズでISSへ長期滞在。※2025年以降にも新たなISS長期滞在ミッションが決定しています）" ,like:"読書、映画鑑賞、旅行、フライトシミュレーター", episode:" 前職は全日本空輸（ANA）のボーイング767型機副操縦士。先輩の野口聡一飛行士から「日本人初のイケメン宇宙飛行士」と太鼓判を押されました。大の「スター・ウォーズ」ファンとしても有名です。", img:"https://humans-in-space.jaxa.jp/assets/images/space-job/lnav_onishi-takuya.jpg", type:"tokyo"},
+            { name:"米田 あゆ" , age:"31歳（1995年生まれ）", born:"東京都（京都市育ち）" , space:"0回（2023年選抜の新世代。現在は将来の月面探査やISSミッションに向けた基礎訓練を終え、飛行機会を待っています）" ,like:"テニス、ヨット、登山、料理", episode:"日本赤十字社医療センターに勤務していた元外科医。合格時は20代で、日本人女性としては3人目の現役宇宙飛行士となりました。学生時代からヨット部に所属するなど、非常にタフな体力の持ち主です。", img:"https://humans-in-space.jaxa.jp/assets/images/space-job/lnav_yoneda-ayu.jpg", type:"tokyo"},
+            { name:"若田 光一" , age:"62歳（1963年生まれ）", born:"埼玉県さいたま市" , space:"5回（スペースシャトル4回、ソユーズ1回、クルードラゴン1回。※シャトルとISSで複数回の長期滞在を経験）" ,like:"フライングディスク、習字、野球観戦", episode:"日本人で初めてISSの「船長（コマンダー）」を務めました。合計5回の宇宙飛行を経験した日本のレジェンドで、お笑いコンビ・爆笑問題の太田光さんとは大学の同期という親しい間柄です。", img:"https://humans-in-space.jaxa.jp/assets/images/space-job/lnav_wakata-koichi.jpg", type:"ob"},
+            { name:"毛利 衛" , age:"78歳（1948年生まれ）", born:"北海道余市町" , space:"2回（1992年と2000年にスペースシャトルに搭乗）" ,like:"テニス、スキー、スキューバダイビング", episode:"実質的な「日本人初のスペースシャトル搭乗者」です。宇宙から地球を見た際に発した「宇宙からは国境線は見えなかった」という名言は、今でも語り継がれています。", img:"https://humans-in-space.jaxa.jp/assets/images/space-job/lnav_mohri-mamoru.jpg", type:"ob"},  
+        ];
+
+        const memberlist = document.querySelector("#memberlist");
+
+        members.forEach((member) =>{
+        
+        //まずカード要素を作ろう//
+        const card =document.createElement("div");
+        card .className ="bg-blue-600 flex flex-col justify-center items-center px-3 py-4 rounded-xl";
+
+        //カードの中身は？？//
+        card.innerHTML = `
+        <div class="flex flex-col md:flex-row justify-center items-center">
+            <div>
+        <img src="${member.img}" alt="${member.name}" class="w-96 h-auto rounded-xl">
+        </div>
+        <div class="flex-1">
+        <h2 class="text-center font-bold my-4 text-4xl text-white">${member.name}</h2>
+        <ul class="px-6 gap-2">
+            <li class="text-md text-white"><span class="font-bold text-white"><年齢></span>${member.age}</li>
+            <li class="text-md text-white"><span class="font-bold text-white"><出身></span>${member.born}</li>
+            <li class="text-md text-white"><span class="font-bold text-white"><宇宙の滞在経験></span>${member.space}</li>
+            <li class="text-md text-white"><span class="font-bold text-white"><好きなこと></span>${member.like}</li>
+            <li class="text-md text-white"><span class="font-bold text-white"><㊙エピソード></span>${member.episode}</li>
+         </ul>
+            </div>
+            
+            </div>
+        `;
+
+        //リストに追加する//
+        memberlist.appendChild(card);
+        });
+
+       
+
+
+
+
+        </script>
+
+
+</html>
